@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+
+<style>
+</style>
+
+<script>
+    str = "I Love korea 대한 민국 만세 korea 화이팅";
+    function proc1(){
+        
+        idx = prompt("인덱스를 입력하세요", `0 ~ ${str.length-1}`)
+        
+        a = str.charAt(idx);
+        
+        document.getElementById('result1').innerHTML = `str.charAt(${idx}) ${a}`;
+    }
+    
+    function proc2(){
+        
+        idx = prompt("인덱스를 입력하세요", `0 ~ ${str.length-1}`)
+        
+        a = str.charCodeAt(idx);
+        
+        document.getElementById('result2').innerHTML = `str.charCodeAt(${idx}) ${a}`;
+    }
+    
+    function proc3(){
+         res ="";
+        while(true){
+        	ss = prompt("검색문자를 입력하세요");
+        	if(ss == "" || ss == null) break;
+        	idx = str.indexOf(ss);
+        
+        	// 비교
+        	if(idx < 0) {
+                alert("없는 문자입니다.");
+                continue;
+            }
+           
+        	res += `str.indexOf(${ss}) = ${idx} <br>`;
+        
+        	document.getElementById('result3').innerHTML = res;
+        }
+    }
+    
+    
+     function proc4(){
+        res ="";
+        while(true){
+        	ss = prompt("검색문자를 입력하세요");
+        	if(ss == "" || ss == null) break;
+        	idx = str.lastIndexOf(ss);
+        
+        	// 비교
+        	if(idx < 0) {
+                alert("없는 문자입니다.");
+                continue;
+            }
+            
+        	res += `str.lastIndexOf(${ss}) = ${idx} <br>`;
+        
+        	document.getElementById('result4').innerHTML = res;
+        }
+    }
+    
+    
+    
+    function proc5(){
+        res = "";
+        while(true){
+            aa = prompt("이름을 입력하세요");
+            
+            // prompt창에서 취소버튼  클릭하면 종료
+            if(aa == null) break;
+            
+            console.log("전" + aa , aa.length);
+            
+            // aa에 space바를 클릭해서 입력시
+            if(aa.trim().length < 1){
+                alert("다시 입력하세요")
+                continue;
+            }
+            res = aa.trim();
+            
+            res += `후 : ${aa}, ${aa.trim().length} <br>`;
+        }
+        
+        // 출력
+        document.getElementById('result5').innerHTML = res;
+    }
+    
+</script>
+
+</head>
+<body>
+
+	<div class="box">
+		charAt(index) : index위치의 문자를 반환한다. <br> charCodeAt(index) :
+		index위치 문자의 유니코드 값을 반환한다. <br> <br> <input type="button"
+			value="charAt" onclick="proc1()"> <input type="button"
+			value="charCodeAt" onclick="proc2()">
+
+		<div id="result1"></div>
+		<div id="result2"></div>
+	</div>
+
+
+	<div class="box">
+		indexOf(value) : value문자의 위치를 검색<br> lastIndexOf(value) : 뒤에서 부터
+		value문자의 위치를 검색 <br> <br> <input type="button"
+			value="indexOf" onclick="proc3()"> <input type="button"
+			value="lastIndexOf" onclick="proc4()">
+
+		<div id="result3"></div>
+		<div id="result4"></div>
+	</div>
+	
+	
+	<div class="box">
+	trim() : 문자열의 앞뒤의 공백을 제거한다.
+	<br> <br>
+     <input type="button" value="trim" onclick="proc5()"> 
+
+		<div id="result5"></div>
+	</div>
+</body>
+</html>

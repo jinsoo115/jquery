@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+
+<style>
+</style>
+
+<script>
+//    arr = new Array("사과", "복숭아", "참외", "포도1", "자두");
+    arr = ["사과", "복숭아", "참외", "포도", "자두", "사과", "메론", "자몽", "사과"];
+    
+    function proc1(){
+        item = prompt("과일을 입력하세요");
+        
+        idx = arr.indexOf(item);
+        
+//        alert(`${item}는 ${idx} 번째 있습니다`)
+        // 있는지 없는지 비교
+        
+        res = "";
+        if(idx < 0){
+            res += `${item}은(는) 없는 과일입니다.`
+        }else{
+            res += `${item}은(는) ${idx} 번째 있습니다.`
+        }
+        
+        result = document.querySelector("#result1").innerHTML = res;
+    }
+    
+    function proc2(){
+        item = prompt("과일을 입력하세요");
+        
+        idx = arr.lastIndexOf(item);
+        
+//        alert(`${item}는 ${idx} 번째 있습니다`)
+        // 있는지 없는지 비교
+        
+        res = "";
+        if(idx < 0){
+            res += `${item}은(는) 없는 과일입니다.`
+        }else{
+            res += `${item}은(는) ${idx} 번째 있습니다.`
+        }
+        
+        document.getElementById("result2").innerHTML = res;
+    }
+    
+    function proc3(){
+        idx = 0;
+        
+        item = prompt("입력하세요");
+        str = "찾는 과일" + item + "은";
+        while(true){
+            // 입력
+            idx = arr.indexOf(item, idx);
+            
+            if(idx < 0) {
+                str = `찾는 과일 ${item}은(는) 없습니다.`;
+                break;
+            }
+            
+            str += idx + "번째 "
+            idx++;
+        }
+        
+        // 출력
+        document.getElementById("result3").innerHTML = str + "있습니다.";
+    }
+    
+    function proc4(){
+        // 추가할 데이터 입력
+        item = prompt("추가할 데이터를 입력");
+        
+        arr.push(item);
+        
+        document.getElementById("result4").innerHTML = arr;
+    }
+    
+    function proc5(){
+        arr2 = arr.pop();
+        res = `${arr} <br> 지운거 : ${arr2}`;
+        document.getElementById("result5").innerHTML = res;
+    }
+    
+    function proc6(){
+        res = "원래배열 : " + arr + "<br>";
+        arr2 = arr.reverse();
+        
+        res += `arr.reverse() :  ${arr2}`;
+        
+        document.getElementById("result6").innerHTML = res;
+    }
+    
+    function proc7(){
+        res = "원래배열 : " + arr + "<br>";
+        arr2 = arr.sort();
+        res += `arr.sort() : ${arr2} <br>`;
+        arr3 = arr2.reverse();
+        
+        res += `arr2.reserse() : ${arr3}`
+        document.getElementById("result7").innerHTML = res;
+    }
+    
+    function proc8(){
+        // 복숭아 ~ 메론 사이의 요소를 자르기
+        item1 = prompt("과일 이름1 입력");
+        item2 = prompt("과일 이름2 입력");
+        
+        // item1 위치 찾기
+        start = arr.indexOf(item1);
+        // item2 위치 찾기
+        end = arr.indexOf(item2, start+1);
+        
+        arr2 = arr.slice(start, end);
+        
+        res = "원래배열 : " + arr + "<br>";
+        res += `${item1} ~ ${item2} 사이의 요소 자르기<br>`;
+        res += `자른 배열 arr.slice(${start}, ${end}) : ${arr2} `;
+        
+        document.getElementById("result8").innerHTML = res;
+    }
+    
+    function proc9(){
+        res = `원래 배열 : ${arr} <br>`;
+        
+        arr.splice(3, 0, "앵두");   
+//        arr.splice(3, 2, "앵두");
+        arr.splice(3, 2); // 삭제
+        res += `수정한 배열 arr.splice(3, 0, "앵두") : ${arr} `;
+        
+        document.querySelector("#result9").innerHTML = res;
+    }
+    
+    function proc10(){
+        arr2 = ["홍길동", "개나리", "진달래", "무궁화", "수선화"];
+        
+        arr3 = arr.concat(arr2);
+        res = "";
+        for(i=0; i < arr3.length; i++){
+            res += `${i} 번째 요소 : ${arr3[i]} <br>`;
+        }
+        
+        document.querySelector("#result10").innerHTML = res;
+        
+    }
+    
+    function proc11(){
+        str = arr.join("/");
+        res = "";
+        
+        for(i=0; i < str.length; i++){
+            res += `${i} 번째 요소 : ${str[i]} <br>`;
+        }
+        document.getElementById("result11").innerHTML = res;
+    }
+</script>
+
+</head>
+<body>
+
+<div class="box">
+indexOf(item) : item이 배열에 몇번째 위치에 있는지 검사한다<br>
+lastIndexOf(itme) : item이 배열에 몇번째 위치에 있는지 뒤에서 부터 검사<br>
+indexOf(item, start) : start위치부터 시작해서 item이 배열에 몇번째 위치에 있는지 검사한다
+<br><br>
+
+<input type="button" value="indexOf(item)" onclick="proc1()">
+<input type="button" value="lastIndexOf" onclick="proc2()">
+<input type="button" value="indexOf(item, start)" onclick="proc3()">
+
+<div id="result1"></div>
+<div id="result2"></div>
+<div id="result3"></div>
+</div>
+
+<div class="box">
+push(a,b,c...) : 배열의 마지막에 추가한다.<br>
+a = pop() : 배열의 마지막요소를 제거하고 리턴
+<br><br>
+
+<input type="button" value="push(item)" onclick="proc4()">
+<input type="button" value="pop" onclick="proc5()" >
+
+<div id="result4"></div>
+<div id="result5"></div>
+</div>
+
+
+<div class="box">
+reverse() : 배열의 순서를 뒤집기<br>
+sort() : 배열의 요소를 사전순으로 정렬
+<br><br>
+
+<input type="button" value="reverse()" onclick="proc6()">
+<input type="button" value="sort()" onclick="proc7()">
+
+<div id="result6"></div>
+<div id="result7"></div>
+</div>
+
+
+<div class="box">
+slice(start, end) : start ~ end 사이의 요소를 자른다<br>
+splice(index, n, a, b, c....) : index위치에서 n개를 지우고 a,b,c를 삽입
+<br><br>
+
+<input type="button" value="slice()" onclick="proc8()">
+<input type="button" value="splice()" onclick="proc9()">
+
+<div id="result8"></div>
+<div id="result9"></div>
+</div>
+
+<div class="box">
+arr.concat(aa) : arr배열과 aa배열을 하나로 합쳐서 arr2배열을 생성<br>
+join() : 하나의 배열을 문자열로 변환
+<br><br>
+
+<input type="button" value="concat()" onclick="proc10()">
+<input type="button" value="join()" onclick="proc11()">
+
+<div id="result10"></div>
+<div id="result11"></div>
+</div>
+</body>
+</html>

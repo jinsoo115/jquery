@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+
+<style>
+</style>
+
+<script>
+    now = new Date();
+    
+    function proc1(){
+        
+        // 100일의 milisec값 구하기
+        day100 = 100 * 1000 * 60 * 60 * 24;
+        //day100 = new Date("2021.06.29");
+        
+        
+        // 현재날짜의 milisec
+        nowtime = now.getTime();
+        
+        times = nowtime + day100;
+        
+        newdate = new Date(times);
+        
+        res = "오늘날짜 : " + now.toLocaleString() +"<br>";
+        res += "100일 후 날짜" + newdate.toLocaleString() + "<br>";
+        
+        // 출력
+        document.getElementById('result1').innerHTML = res;
+    }
+    
+    
+    function proc2(){
+        
+        // 설날
+        a = new Date("2021.02.12");
+        
+        // 각 각의 milisec를 구한다
+        nowtime = now.getTime();
+        atime = a.getTime();
+        
+        // 각 milisec 의 값을 더한다.
+        times = atime - nowtime;
+        
+        // 새로운 객체를 생성
+        newdate = new Date(times);
+        
+        // 새로운 객체의 milisec 구하기 - getTime;
+        newMili = newdate.getTime();
+            
+        // 남은 일 구하기 - /1000/60/60/24
+        res = `오늘날짜 : ${now.toLocaleString()} <br>`;
+        res += `설날 날짜 : ${a.toLocaleString()} <br>`;
+        res += `설날까지 남은 날짜는 ${(newMili/1000/60/60/24).toFixed(2)}`;
+        
+        // 출력
+        document.getElementById('result2').innerHTML = res;
+        
+    }
+    
+</script>
+
+</head>
+<body>
+
+<div class="box">
+100일후의 날짜를 구한다<br>
+1일의 millisec 값<br>
+1 * 1000 * 60 * 60 * 24
+
+<br><br>
+
+<input type="button" value="확인" onclick="proc1()">
+
+<div id="result1"></div>
+</div>
+
+
+<div class="box">
+설날까지 남은 일수
+<br><br>
+
+<input type="button" value="확인" onclick="proc2()">
+
+<div id="result2"></div>
+</div>
+</body>
+</html>

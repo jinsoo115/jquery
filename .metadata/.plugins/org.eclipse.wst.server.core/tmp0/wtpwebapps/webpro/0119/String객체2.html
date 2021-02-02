@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+
+<style>
+    .box input[type = button]{
+        width: 70px;
+    }
+</style>
+
+<script>
+    str = "I Love korea 대한 민국 만세 korea 화이팅";
+    function proc1(){
+        // 입력한 내용 가져오기
+        txt = document.getElementById('area').value;
+        
+        ch = txt.replace(/\r/g, "").replace(/\n/g, "<br>");
+        
+        document.getElementById('result1').innerHTML = ch;
+        
+        // 줄바꿈 없이  한줄로 출력
+        // document.getElementById('result1').innerHTML = txt;
+    }
+    
+    function proc2(){
+        start = prompt("start 인덱스입력");
+        end = prompt("end 인덱스 입력");
+        
+        aa = str.substring(start, end);
+        
+        res = "원래 문자 : " + str + "<br>";
+        
+        res += `str.substring(${start},${end}) = ${aa} <br>`;
+        
+        document.getElementById('result2').innerHTML = res;
+    }
+    
+    function proc3(){
+        start = prompt("start 인덱스입력");
+        end = prompt("end 인덱스 입력");
+        
+        aa = str.slice(start, end);
+        
+        res = "원래 문자 : " + str + "<br>";
+        
+        res += `str.slice(${start},${end}) = ${aa} <br>`;
+        
+        document.getElementById('result3').innerHTML = res;
+    }
+    
+    function proc4(){
+        start = prompt("start 인덱스입력");
+        leng = prompt("추출문자의 갯수");
+        
+        aa = str.substr(start, leng);
+        
+        res = "원래 문자 : " + str + "<br>";
+        
+        res += `str.substr(${start},${leng}) = ${aa} <br>`;
+        
+        document.getElementById('result4').innerHTML = res;
+    }
+    
+    function proc5(){
+        arr = str.split(" ");
+        
+        res = `문자열 길이 : ${str.length} <br>`;
+        res += `배열 길이 : ${arr.length} <br>`;
+        
+        res += "문자열 출력 <br>";
+        for(i = 0; i < str.length; i++){
+            res += `${i} 번쨰 : ${str[i]} <br>`;
+        }
+        
+        res += "배열 출력 <br>";
+        for(i = 0; i < arr.length; i++){
+            res += `${i} 번쨰 : ${arr[i]} <br>`;
+        }
+            
+        
+        document.getElementById('result5').innerHTML = res;
+    }
+</script>
+
+</head>
+<body>
+
+<div class="box">
+replace(old, new); old문자를 new문자로 바꾼다.<br>
+old와 new 문자에 정규식을 사용할 수 있다.
+<br><br>
+<textarea id = "area" rows="10" cols="50"></textarea>
+<input type="button" value="확인" onclick="proc1()">
+
+<div id="result1"></div>
+</div>
+
+
+<div class="box">
+substring(start, end) : start - end 사이의 문자를 추출.<br>
+slice(start, end) : start - end 사이의 문자를 추출<br>
+substr(start, length) : start 부터 length(길이) 만큼 추출<br>
+split(구분자, limit(갯수)) : 문자열에서 구분자를 기준으로 분리해서 배열로 리턴
+<br><br>
+<input type="button" value="substring" onclick="proc2()">
+<input type="button" value="slice" onclick="proc3()">
+<input type="button" value="substr" onclick="proc4()">
+<input type="button" value="split" onclick="proc5()">
+
+
+<div id="result2"></div>
+<div id="result3"></div>
+<div id="result4"></div>
+<div id="result5"></div>
+</div>
+</body>
+</html>

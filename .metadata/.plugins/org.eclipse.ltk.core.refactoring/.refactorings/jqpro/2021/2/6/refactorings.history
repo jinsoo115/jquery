@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;jqpro/WebContent/0202/qwe.html&apos; to &apos;dataType.html&apos;" description="Rename resource &apos;qwe.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/0202/qwe.html" name="dataType.html" stamp="1612227484473" updateReferences="true"/>
+</session>

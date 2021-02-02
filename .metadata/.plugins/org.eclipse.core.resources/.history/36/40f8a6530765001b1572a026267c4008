@@ -1,0 +1,17 @@
+<%@page import="kr.or.ddit.ibatis.config.SqlMapClientFactory"%>
+<%@page import="com.ibatis.sqlmap.client.SqlMapClientBuilder"%>
+<%@page import="com.ibatis.sqlmap.client.SqlMapClient"%>
+<%@page import="java.io.Reader"%>
+<%@page import="com.ibatis.common.resources.Resources"%>
+<%@page import="java.nio.charset.Charset"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+// 클라이언트 요청시 전송되는 데이터를 받는다
+// CRUD처리를 한다.
+//- 1. SqlMapClient객체를 얻어오기 - smc = SqlMapClientFactory.getClient();
+SqlMapClient smc = SqlMapClientFactory.getClient();
+//- 2. sql문을 실행 - mapper파일의 namespace.id이름
+//	select -> smc.queryForList(namespace.id이름)
+//	select -> smc.quertForObject(namespace.id이름)
+// 처리 결과로 응답 데이터를 생성한다. - json, text, html, xml
+%>

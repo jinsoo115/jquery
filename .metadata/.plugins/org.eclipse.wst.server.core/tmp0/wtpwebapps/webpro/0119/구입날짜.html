@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+
+<style>
+</style>
+
+<script>
+    // 오늘 날짜
+    now = new Date();
+    function proc1(){
+        // 구입 날짜가져오기
+        buy = document.getElementById('pdate').value;
+         
+        console.log(buy);
+        // 구입 날짜를 Date객체로 생성하기
+        buydate = new Date(buy);
+         
+        // 각 time 구하기
+        nowtime = now.getTime();;
+        buytime = buydate.getTime();
+         
+        // time의 간격 구하기 - 오늘날짜 - 과거 날짜
+        times = nowtime - buytime;
+         
+        // 일 구하기 /1000/60/60/24
+        day = times/1000/60/60/24;
+         
+        res = `구입 날짜 : ${buydate.toLocaleString()} <br>`
+        res += `오늘 날짜 : ${now.toLocaleString()} <br>`
+         
+        // 비교 day > 7 - 교환 또는 반품 가능 불가능 출력
+        if(day>7) document.getElementById('result1').innerHTML = `${res} 교환 또는 반품 불가능`;
+        else document.getElementById('result1').innerHTML = `${res} 교환 또는 반품 가능`;
+         
+    }
+</script>
+
+</head>
+<body>
+
+<div class="box">
+
+<br><br>
+
+<input type="date" id="pdate">
+
+<input type="button" value="확인" onclick="proc1()">
+
+<div id="result1"></div>
+</div>
+</body>
+</html>

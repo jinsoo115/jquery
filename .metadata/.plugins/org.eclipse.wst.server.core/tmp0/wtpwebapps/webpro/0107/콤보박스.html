@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style type="text/css">
+	select{
+		border: 1px solid pink;
+	}
+</style>
+</head>
+<body>
+<pre>
+여러개중에 하나만 선택
+</pre>
+	<form action="combo.jsp" method="post">
+		<select name="sel1">
+			<option value="현대자동차">현대자동차</option>
+			<option value="기아자동차">기아자동차</option>
+			<option value="BMW">BMW</option>
+			<option value="폭스바겐">폭스바겐</option>
+			<option value="벤츠" selected="selected">벤츠</option>
+			<option value="아우디">아우디</option>
+			<option value="테슬라">테슬라</option>
+			
+		</select>
+		
+		<input type="submit" value="전송">
+	</form>
+	
+<pre>
+여러개를 동시에 선택 size는 화면에 보여주는 갯수
+&lt;select multiple="multiple" size="5">	
+</pre>
+	<form action="combo2.jsp" method="post">
+		<select name="sel2" multiple="multiple" size="5">
+			<option value="현대자동차">현대자동차</option>
+			<option value="기아자동차">기아자동차</option>
+			<option value="BMW">BMW</option>
+			<option value="폭스바겐">폭스바겐</option>
+			<option value="벤츠" selected>벤츠</option>
+			<option value="아우디">아우디</option>
+			<option value="테슬라" selected>테슬라</option>
+			
+		</select>
+		
+		<input type="submit" value="전송">
+	</form>
+</body>
+</html>

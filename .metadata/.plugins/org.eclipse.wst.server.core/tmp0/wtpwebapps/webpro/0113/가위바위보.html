@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script>
+    function proc1(){
+        a = prompt("입력1");
+        b = prompt("입력2");
+        
+        // 비교
+        if(a == b){
+            res = "비김";
+        }else if(a == "가위" && b == "보"
+                || a == "바위" && b== "가위"
+                || a == "보" && b == "바위"){ 
+            res = "첫번째 사람이 이김"
+        }else{
+            res = "두번째 사람이 이김"
+        }
+        
+        // 출력모양
+        str = `첫번째 사람 : ${a} <br>`;
+        str += `두번째 사람 : ${b} <br>`;
+        str += `결과 : ${res}`;
+        
+        // 출력
+        out = document.querySelector("div");
+        out.innerHTML = str;
+    }
+</script>
+</head>
+<body>
+<pre>두사람의 가위바위보 게임
+prompt를 이용하여 입력받는다.
+</pre>
+<input type="button" value="확인" onclick="proc1()">
+<div></div>
+<div></div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+
+<style>
+</style>
+
+<script>
+    function proc1(){
+        str ="";
+        while(true){
+            // 수를 입력
+            su = prompt("수입력????");
+            if(su==null || su=="") continue;
+            for(i = 1; i <= 9; i++){
+                str += `${su} * ${i} = ${su * i} <br>` ;
+            }
+            result = document.querySelector("#result1").innerHTML = str;
+            
+            // 계속 여부?
+            a = confirm("계속 하겠습니까??");
+            if(!a) break;
+        }
+    }
+</script>
+
+</head>
+<body>
+
+<div class="box">
+확인버튼 클릭하면 수를 입력(prompt)
+입력한 수에 대한 구구단을 출력한다.
+계속여부?
+<br><br>
+
+<input type="button" value="확인" onclick="proc1()">
+
+<div id="result1"></div>
+</div>
+</body>
+</html>

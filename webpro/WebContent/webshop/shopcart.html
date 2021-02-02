@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/mystyle.css">
+
+</head>
+<body>
+<form action="1.jsp" method="post" onsubmit="return false">
+<table id = "cartTb" border="1">
+    <caption><a href="#">Shopping Cart</a></caption>
+    <tr>
+        <th>품목</th>
+        <th>가격</th>
+        <th>수량</th>
+        <th class = "cartInput" >합계</th>
+    </tr>
+    
+    <tr>
+        <td>컴퓨터 세트</td>
+        <td>2,000,000원</td>
+        <td><input type="number" value="0"></td>
+        <td><input class = "cartInput" type="text" value="0"></td>
+    </tr>
+    
+    <tr>
+        <td>티셔츠</td>
+        <td>50,000원</td>
+        <td><input type="number" value="0"></td>
+        <td><input class = "cartInput" type="text" value="0"></td>
+    </tr>
+    
+    <tr>
+        <td>음악파일</td>
+        <td>1,000원</td>
+        <td><input type="number" value="0"></td>
+        <td><input class = "cartInput" type="text" value="0"></td>
+    </tr>
+    <tr>
+        <td>영화파일</td>
+        <td>5,000원</td>
+        <td><input type="number" value="0"></td>
+        <td><input class = "cartInput" type="text" value="0"></td>
+    </tr>
+</table>
+<input class = "cartI" type="button" value="계산" >
+<input class = "cartI" type="button" value="구매">
+<input class = "cartI" type="reset" value="초기화"><br>
+    </form>
+<a href="./main.html">Back to Home</a>
+</body>
+</html>

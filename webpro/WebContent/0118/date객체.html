@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+
+<style>
+</style>
+
+<script>
+        now1 = new Date();
+    function proc1(){
+        now2 = new Date(12340098777);
+        now3 = new Date("2020. 04. 20");
+        now4 = new Date(2020, 04-1, 20); // new Date(year, month, date[, hours[, minutes[, seconds[,ms]]]]) month는 0부터 시작하는 인덱스형태이기 때문에 -1을 해주어야 한다.
+        
+        // 출력 모양
+        res = now1;
+        res += "<br>" + now2;
+        res += "<br>" + now3;
+        res += "<br>" + now4;
+        
+        res2 = "<br>" + now1.toLocaleString();
+        res2 += "<br>" + now2.toLocaleString();
+        res2 += "<br>" + now3.toLocaleDateString();
+        res2 += "<br>" + now4.toLocaleDateString();
+        
+        result = document.getElementById('result1').innerHTML = res + res2;
+        
+    }
+    
+    function proc2(){
+        arr = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+        
+        day = now1.getDay(); // 0~6
+        
+        res = "오늘은" + now1.toLocaleString() + "<br>";
+        
+        res += arr[day];
+        /*switch(day){
+            case 0:
+                res += "일요일"
+                break;
+            case 1:
+                res += "월요일"
+                break;
+            case 2:
+                res += "화요일"
+                break;
+            case 3:
+                res += "수요일"
+                break;
+            case 4:
+                res += "목요일"
+                break;
+            case 5:
+                res += "금요일"
+                break;
+            case 6:
+                res += "토요일"
+                break;
+        }*/
+        document.getElementById('result2').innerHTML = res;
+    }
+</script>
+
+</head>
+<body>
+
+<div class="box">
+new Date() // 현재 날짜와 시간<br>
+new Date(milliseconds) //1970/01/01 이후의 밀리초<br>
+new Date(dateString)<br>
+new Date(year, month, date[, hours[, minutes[, seconds[,ms]]]])
+<br><br>
+
+<input type="button" value="확인" onclick="proc1()">
+
+<div id="result1"></div>
+</div>
+
+
+<div class="box">
+getDay() : 요일 구하기 0(일요일)~6(토요일)값을 리턴<br>
+실제로 요일을 구하기 위해서 if또는 switch를 이용
+<br><br>
+
+<input type="button" value="확인" onclick="proc2()">
+
+<div id="result2"></div>
+</div>
+</body>
+</html>

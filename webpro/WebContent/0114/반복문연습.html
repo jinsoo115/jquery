@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+
+<script>
+    function proc1(){
+        hap = 0;
+        str = "";
+        
+        
+        while(true){
+            // 입력
+            a = parseInt(prompt("입력하세요"));
+                
+            // 비교 - break
+            if(a == 0) break;
+            
+            // hap 변수에 더하기
+            hap += a;
+            // 입력한 수를 나열 하기
+            str += a + " ";
+        }
+        
+        // 출력모양
+        res = `입력한 수 ${str} <br> 합: ${hap}`
+        // 출력
+        result = document.getElementById("result1");
+        result.innerHTML = `입력하신 숫자는: ${str}<br> 합은 : ${hap}`;
+    }
+    
+    
+    
+    function proc2(){
+        hap = 0;
+        str = "";
+        for(i = 1; i <=10; i++){
+            for(k = 1; k<=10; k++){
+                if((i+k)%3 != 0) continue;
+                
+                hap += (i+k);
+                str += `${i} ${k} = ${i+k} <br>`;
+            }
+        }
+        
+        // 출력 모양
+        res = "3의 배수가 되는 i+k <br>";
+        res += str;
+        res += `전체 합 : ${hap}`;
+        
+        // 출력
+        result = document.querySelector("#result2")
+        result.innerHTML = res;
+    }
+    
+    function proc3(){
+        str = "";
+        for(i = 1; i <= 100; i++){
+            // 비교 - 합 구하기
+            if((i%2) == 0 && (i%3) == 0){
+               str += i+" " ;
+            } 
+        }
+        
+        // 출력 모양
+        res = `2와 3의 배수인 수: ${str}`;
+        // 출력
+        result = document.getElementById("result3");
+        result.innerHTML = res;
+    }
+    
+    function proc4(){
+        // 변수선어
+        str = "";
+        
+        while(true){
+            // 두개의 숫를 입력
+            a = parseInt(prompt("첫번째 숫자 입력: "));
+            b = parseInt(prompt("두번째 숫자 입력: "));
+            
+            // 비교 -break;
+            if(a==0 && b ==0) break;
+            
+            // 두수를 더한 합이 100인지 비교 - continue
+            if(a + b < 100){
+              continue;  
+            }
+            
+            // 두수를 나열
+            str += `${a} 와 ${b}의 합은 ${a+b}<br>`;
+            
+        }
+        // 출력모양
+        // 출력
+        result = document.querySelector("#result4");
+        result.innerHTML = str;
+    }
+    </script>
+</head>
+<body>
+
+<div class="box">사용자가 입력한 값을 계속 더하고,
+사용자가 0을 입력하면 그때까지 누적된 값을
+출력하는 프로그램을 작성하시오<br>
+
+<input type="button" value="확인" onclick="proc1()">
+
+<div id="result1"></div>
+</div>
+
+
+<div class="box">다중 for문을 이용해서 1~ 10 까지 중   
+      i와 k의 더한 합이 3의 배수일때만 출력 continue를 이용<br>
+
+<input type="button" value="확인" onclick="proc2()">
+
+<div id="result2"></div>
+</div>
+
+
+<div class="box">1~100 까지 중 2의 배수이면서 3의 배수인것만 출력 <br>
+
+<input type="button" value="확인" onclick="proc3()">
+
+<div id="result3"></div>
+</div>
+
+
+<div class="box">두 수를 입력(prompt) 두수의 합이 100이상일이때만 출력 
+     continue를 이용 , 두수 모두 0 이 입력되면 종료  <br>
+
+<input type="button" value="확인" onclick="proc4()">
+
+<div id="result4"></div>
+</div>
+
+</body>
+</html>

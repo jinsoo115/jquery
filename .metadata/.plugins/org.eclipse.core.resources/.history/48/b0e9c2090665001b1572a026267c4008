@@ -1,0 +1,5 @@
+package kr.or.ddit.ibatis.config;
+
+public class SqlMapClientFactory {
+
+}

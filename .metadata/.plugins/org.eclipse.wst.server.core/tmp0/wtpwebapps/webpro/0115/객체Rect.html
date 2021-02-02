@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+
+<style>
+</style>
+
+<script>
+    // 리터럴 객체 생성
+    var rect = {
+        width: 12,
+        height: 4,
+        getArea: function(){
+            area = this.width * this.height;
+            return area;
+        },
+        getCircum: function(){
+            circum = (parseInt(this.width) + parseInt(this.height)) * 2;
+            return circum;
+        }
+        
+    };
+    
+    
+    // 생성자에 의 한 객체 생성 - new 키워드로 생성후 사용
+    
+    function Rect(width, height){
+        // 속성
+        this.width = width;
+        this.height = height;
+        
+        // 메소드
+        this.getArea = function(){
+            area = this.width * this.height;
+            return area;
+            
+        };
+        this.getCircum = function(){
+            circum = (this.width + this.height) * 2;
+            return circum;
+        };
+    }
+    
+    function proc3(){
+        crect = new Rect(4, 5);
+        
+        cprint(crect, "#result3");
+        
+        aa = new Rect(6, 7);
+        cprint(aa, "#result3");
+        
+        name = "네모";
+        bb = new Rect(3, 9);
+        cprint(bb, "#result3", name);
+    }
+    
+     function proc4(){
+        /*// 가로 입력
+        a = parseInt(prompt("가로 입력"));
+        
+        // 세로 입력
+        b = parseInt(prompt("세로 입력"));
+        
+        // 객체 생성
+        crect = new Rect(a, b);*/
+        
+        crect = new Rect(parseInt(prompt("가로 입력")), parseInt(prompt("세로입력")));
+         
+         
+        // 이름 입력
+        name = prompt("이름 입력");
+        crect.name = name;
+        
+        // 출력
+        cprint(crect, "#result4", name);
+    }
+    
+    function cprint(rectob, out, name){
+        // 출력 모양
+        res = "";
+        if(name != undefined){
+            res = `이름: ${name} <br>`;
+        }  
+        
+        res += `가로: ${rectob.width} <br>`;
+        res += `세로: ${rectob.height} <br>`;
+        
+        a = rectob.getArea();
+        
+        res += `면적 : ${a} <br>`;
+        
+        res += `둘래: ${rectob.getCircum()} <br><br>`;
+        
+        result = document.querySelector(out).innerHTML += res;
+    }
+    
+   
+    
+    function proc1(){
+        // 출력모양
+        print("#result1");
+        
+    }
+    
+    function proc2(){
+        // 가로 입력, 세로 입력 - prompt
+        // rect객체의 가로 세로 속성 값으로 대입한다.
+        rect.width = prompt("가로의 길이를 입력하세요.");
+        rect.height = prompt("세로의 길이를 입력하세요.");
+        
+        // 출력 - result2
+        print("#result2");
+        
+       
+    }
+    
+    function print(out){
+        res = `가로: ${rect.width} <br>`;
+        res += `세로: ${rect.height} <br>`;
+        
+        a = rect.getArea();
+        
+        res += `면적 : ${a} <br>`;
+        
+        res += `둘래: ${rect.getCircum()} <br>`;
+        
+        result = document.querySelector(out).innerHTML = res;
+    }
+    
+</script>
+
+</head>
+<body>
+
+<div class="box">
+리터럴에 의한 객체 생성<br>
+var rect = {<br>
+    width: 12,<br>
+    height: 4,<br>
+    getArea: function(){<br>
+        area = this.width * this.height;<br>
+        return area;<br>
+    },<br>
+    getCircum: function(){<br>
+        circum = (parseInt(this.width) + parseInt(this.height)) * 2;<br>
+        return circum;<br>
+    } <br>
+};<br>
+객체안에 선언되지 않은 속성이나 메소드를 
+필요시 언제든지 동적으로 추가 해서 사용 할 수 있다.<br>
+rect.width = 10;
+<br><br>
+
+<input type="button" value="확인" onclick="proc1()">
+<input type="button" value="변경" onclick="proc2()">
+
+<div id="result1"></div>
+<div id="result2"></div>
+
+</div>
+
+
+<div class="box">
+생성자에 의한 객체 생성<br>
+<br><br>
+
+<input type="button" value="확인" onclick="proc3()">
+<input type="button" value="변경" onclick="proc4()">
+
+<div id="result3"></div>
+<div id="result4"></div>
+
+</div>
+</body>
+</html>

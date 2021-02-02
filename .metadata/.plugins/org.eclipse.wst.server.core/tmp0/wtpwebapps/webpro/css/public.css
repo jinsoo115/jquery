@@ -1,0 +1,41 @@
+@charset "utf-8";
+pre{
+	background-color : #96FFFF;
+	font-size : 1.5em;  
+    white-space: pre-wrap;
+    
+    /*
+        pre : 공백은 그대로 줄바꿈이 되지 않는다
+        pre-wrap : 공백은 그대로 줄바꿈 된다
+        pre-line : 공백을 여러개 줘도 공백은 하나만 표시 줄바꿈된다.
+        nowrap : 공백을 여러개 줘도 공백은 하나만 표시 줄바꿈되지 않는다.
+    */
+}
+
+div.box{
+    width: 100%;
+    height: auto;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #bf91ed;
+    background: #bf91ed;
+}
+.box input[type=button]{
+    width: auto;
+    height: 30px;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background: #00cca3;
+    border-color: aquamarine; 
+}
+
+.box div{
+    width: 80%;
+    height: auto;
+    padding: 10px;
+    border: 1.5px dotted #e8d3fc;
+    margin: 20px;
+    background-color: #e8d3fc;
+}
+

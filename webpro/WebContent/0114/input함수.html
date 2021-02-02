@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+
+<style>
+</style>
+
+<script>
+    function proc1(a){
+        // 입력한 값 가져오기
+        x = document.getElementById("x").value;
+        y = document.querySelector("#y");
+        
+        x = parseInt(x);
+        y = parseInt(y.value);
+        switch(a){
+            case "+":
+                sum(); // 함수호출
+                break;
+            case "-":
+                sub();
+                break;
+            case "*":
+                multi();
+                break;
+            case '/':
+                divide();
+                break;
+        }
+        
+        // 출력
+        result = document.querySelector("#result1");
+        result.innerHTML = res;
+        
+        /*alert(res);*/
+        console.log(res);
+    }
+    
+    function sum(){
+        res = x + y;
+    }
+    function sub(){
+        res = x - y;
+    }
+    function multi(){
+        res = x * y;
+    }
+    function divide(){
+        res = x / y;
+    }
+</script>
+
+</head>
+<body>
+
+<div class="box">
+
+<br><br>
+입력1 <input type="text" id="x"><br>
+입력2 <input type="text" id="y"><br>
+<br>
+<input type="button" value="+" onclick="proc1('+')">
+<input type="button" value="-" onclick="proc1('-')">
+<input type="button" value="*" onclick="proc1('*')">
+<input type="button" value="/" onclick="proc1('/')">
+
+<div id="result1"></div>
+</div>
+</body>
+</html>

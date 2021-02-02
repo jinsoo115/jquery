@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script>
+    function proc1(){
+        hap = 0;
+        for(i=1; i <= 100; i++){
+            hap += i;
+        }
+        
+        result = document.getElementById("result1");
+        
+        result = document.querySelector("#result1");
+        
+        result.innerHTML = hap;
+    }
+    
+    
+    function proc2(){
+        hap = 0;
+        /*for(i = 1; i <= 200; i++){
+            if(i % 2 == 0){
+                hap += i;
+            }
+        }*/
+        
+        /*for(i = 2; i <= 200; i +=2){
+            hap += i;
+        }*/
+        
+        for(i = 1; i <= 200; i++){
+            if( i%2 != 0) continue;
+            hap += i;
+        }
+        result = document.getElementById("result2");
+        
+        result.innerHTML = hap;
+    }
+    
+    
+    
+    function proc3(){
+        hap = 0;
+        input = prompt("숫자입력")
+        for(i = 1; i <= input; i++){
+          
+                hap += i;
+            
+        }
+        result = document.getElementById("result3");
+        
+        result.innerHTML = hap;
+    }
+    </script>
+</head>
+<body>
+<div class="box">1~100 까지 합구하기<br>
+
+<input type="button" value="확인" onclick="proc1()">
+
+<div id="result1"></div>
+</div>
+
+
+<div class="box">1~200 까지 짝수의 합구하기<br>
+
+<input type="button" value="확인" onclick="proc2()">
+
+<div id="result2"></div>
+</div>
+
+
+
+<div class="box">1~입력한수 까지 합구하기<br>
+
+<input type="button" value="확인" onclick="proc3()">
+
+<div id="result3"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<%@page import="com.ibatis.sqlmap.client.SqlMapClientBuilder"%>
+<%@page import="com.ibatis.sqlmap.client.SqlMapClient"%>
+<%@page import="java.io.Reader"%>
+<%@page import="com.ibatis.common.resources.Resources"%>
+<%@page import="java.nio.charset.Charset"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+// 클라이언트 요청시 전송되는 데이터를 받는다
+// CRUD처리를 한다.
+// - SqlMapClient객체를 생성
+try {
+			// 1-1. 문자 인코딩 캐릭터셋 설정
+			Charset charset = Charset.forName("UTF-8");
+			Resources.setCharset(charset);
+			
+			// 1-2. 환경 설정 파일 읽어오기
+			Reader rd = Resources.getResourceAsReader("sqlMapConfig.xml");
+			
+			// 1-3. 위에서 읽어온 Reader객체를 이용하여 실제 환경 설정을
+			//		진행한 후 SQL문을 호출해서 실행할 객체를 생성한다.
+			SqlMapClient smc = SqlMapClientBuilder.buildSqlMapClient(rd);
+} catch(Exception e){
+	e.printStackTrace();
+}
+// 처리 결과로 응답 데이터를 생성한다. - json, text, html, xml
+%>
