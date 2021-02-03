@@ -16,7 +16,7 @@ public class SqlMapClientFactory {
 			Resources.setCharset(charset);
 
 			// 1-2. 환경 설정 파일 읽어오기
-			Reader rd = Resources.getResourceAsReader("sqlMapConfig.xml");
+			Reader rd = Resources.getResourceAsReader("kr/or/ddit/ibatis/config/sqlMapConfig.xml");
 
 			// 1-3. 위에서 읽어온 Reader객체를 이용하여 실제 환경 설정을
 			//		진행한 후 SQL문을 호출해서 실행할 객체를 생성한다.

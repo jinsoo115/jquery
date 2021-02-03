@@ -1,0 +1,10 @@
+<%@page import="kr.or.ddit.lprod.LprodVO"%>
+<%@page import="java.util.List"%>
+<%@page import="kr.or.ddit.ibatis.config.SqlMapClientFactory"%>
+<%@page import="com.ibatis.sqlmap.client.SqlMapClient"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	SqlMapClient smc = SqlMapClientFactory.getClient();
+
+List<LprodVO> list = smc.queryForList("lprod.selectLprod");
+%>
