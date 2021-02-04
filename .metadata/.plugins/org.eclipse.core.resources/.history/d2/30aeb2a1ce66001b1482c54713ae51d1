@@ -7,9 +7,6 @@
 <script src="../js/jquery-3.5.1.min.js"></script>
 
 <style>
-    tr{
-        width: 600px;
-    }
 </style>
 
 <script>
@@ -74,9 +71,9 @@
                 error : function(xhr){
                     alert("상태 : " + xhr.status);
                 },
-                dataType : "html"
+                dataType : "json"
             })
-            
+            console.log(prod_id)
         })
     })
 </script>
@@ -106,12 +103,9 @@
             </td>
         </tr>
         <tr>
-            <td id="detail" colspan="2">
-                
-            </td>
+            <td id="detail" colspan="2"></td>
         </tr>
     </table>
-
 </div>
 </div>
 </body>
