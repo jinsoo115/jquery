@@ -1,0 +1,26 @@
+<%@page import="kr.or.ddit.buyer.BuyerVO"%>
+<%@page import="kr.or.ddit.ibatis.config.SqlMapClientFactory"%>
+<%@page import="com.ibatis.sqlmap.client.SqlMapClient"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+//1. 클라이언트 요청시 전송되는 데이터 받기
+String buyer_id = request.getParameter("id");
+//2. SqlMapClient객체 얻기
+SqlMapClient smc = SqlMapClientFactory.getClient();
+
+//3. sql문 실행 -select-
+	BuyerVO vo = (BuyerVO)smc.queryForObject("buyer.selectByDetails", buyer_id);
+%>
+{
+	"BUYER_ID" : "<%= vo.getBuyer_id() %>",
+	"BUYER_NAME" : "<%= vo.getBuyer_name() %>",
+	"BUYER_LGU" : "<%= vo.getBuyer_lgu() %>",
+	"BUYER_COMTEL" : "<%= vo.getBuyer_comtel() %>",
+	"BUYER_BANK" : "<%= vo.getBuyer_bank() %>",
+	"BUYER_BANKNO" : "<%= vo.getBuyer_bankno() %>",
+	"BUYER_NAMENAME" : "<%= vo.getBuyer_bankname() %>",
+	"BUYER_MAIL" : "<%= vo.getBuyer_mail() %>",
+	"BUYER_ZIP" : "<%= vo.getBuyer_zip() %>",
+	"BUYER_ADD1" : "<%= vo.getBuyer_add1() %>",
+	"BUYER_ADD2" : "<%= vo.getBuyer_add2() %>"
+}

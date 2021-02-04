@@ -11,7 +11,6 @@
  //3. sql문 실행 -select-
  	List<LprodVO> list = smc.queryForList("lprod.selectLprod");
 %>
-
 [
 <%
 	//- 3. 실행 결과로 json 데이터 생성
@@ -29,5 +28,3 @@
 	}
 %>
 ]
-
-

@@ -20,6 +20,14 @@
     p:hover{
         background: lime;
     }
+    
+    #detable{
+        border: none;
+        border-collapse: collapse;
+    }
+    #detable td{
+        text-align: left;
+    }
 </style>
 
 <script>
@@ -39,6 +47,53 @@
                     alert("상태 : " + xhr.status);
                 },
                 dataType : "json"
+            })
+        })
+        
+       /* $("#names").on("click", "p", function(){
+            
+            idvalue = $(this).attr("id");
+            
+            $.ajax({
+                url : "buyerDetails.jsp",
+                type : "post",
+                data : {"id" : idvalue},
+                success : function(res){
+                    code = `<table border="1" id="detable"><tr><td>BUYER_ID</td><td>${res.id}</td></tr>`;
+                    code += `<tr><td>BUYER_NAME</td><td>${res.name}</td></tr>`;
+                    code += `<tr><td>BUYER_LGU</td><td>${res.lgu}</td></tr>`;
+                    code += `<tr><td>BUYER_COMTEL</td><td>${res.comtel}</td></tr>`;
+                    code += `<tr><td>BUYER_BANK</td><td>${res.bank}</td></tr>`;
+                    code += `<tr><td>BUYER_BANKNO</td><td>${res.bankno}</td></tr>`;
+                    code += `<tr><td>BUYER_BANKNAME</td><td>${res.bankname}</td></tr>`;
+                    code += `<tr><td>BUYER_MAIL</td><td>${res.mail}</td></tr>`;
+                    code += `<tr><td>BUYER_ZIP</td><td>${res.zip}</td></tr>`;
+                    code += `<tr><td>BUYER_ADD1</td><td>${res.add1}</td></tr>`;
+                    code += `<tr><td>BUYER_ADD2</td><td>${res.add2}</td></tr></table>`;
+                    $("#details").html(code);
+                },
+                error : function(xhr){
+                    alert("상태 : " + xhr.status);
+                },
+                dataType : "json" //html, text
+            })
+            
+            
+        })*/
+        $("#names").on("click", "p", function(){
+            idvalue = $(this).attr("id");
+            
+            $.ajax({
+                 url : "details.jsp",
+                type : "post",
+                data : {"id" : idvalue},
+                success : function(res){
+                    $("#details").html(res);
+                },
+                error : function(xhr){
+                    alert("상태 : " + xhr.status);
+                },
+                dataType : "html"
             })
         })
     })

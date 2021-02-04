@@ -5,6 +5,8 @@ D:\A_TeachingMaterial\5.JQuery\.metadata\.plugins\org.eclipse.jst.jsp.core\jspse
 \jqpro\src
 D:\A_TeachingMaterial\5.JQuery\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3824758804.index
 \webpro\src
+D:\A_TeachingMaterial\5.JQuery\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3669718862.index
+\jqpro\src
 D:\A_TeachingMaterial\5.JQuery\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2499674242.index
 \webpro\src
 D:\A_TeachingMaterial\5.JQuery\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1155523309.index
