@@ -11,7 +11,7 @@ SqlMapClient smc = SqlMapClientFactory.getClient();
 //3. sql문 실행 -select-
 	ProdVO vo = (ProdVO) smc.queryForObject("prod.selectByDetails",prod_id);
 %>
-<table border="1">
+<table class="table table-striped">
 <tr><td>PROD_ID</td><td><%= vo.getProd_id() %></td></tr>
 <tr><td>PROD_NAME</td><td><%= vo.getProd_name() %></td></tr>
 <tr><td>PROD_LGU</td><td><%= vo.getProd_lgu() %></td></tr>
@@ -22,3 +22,4 @@ SqlMapClient smc = SqlMapClientFactory.getClient();
 <tr><td>PROD_OUTLINE</td><td><%= vo.getProd_outline() %></td></tr>
 <tr><td>PROD_DETAIL</td><td><%= vo.getProd_detail() %></td></tr>
 </table> 
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+</style>
+
+<script>
+    $(function(){
+        $.ajax({
+            url : "/jqpro/ServletTest",
+            type : "get",
+            data : {"id" : "a001"},
+            success : function(res){
+                $("#result1").html(res);
+            },
+            error : function(xhr){
+                alert("상태 : " + xhr.status);
+            },
+            dataType : "html"
+            
+        })
+    })
+</script>
+
+</head>
+<body>
+
+<div class="box">
+
+<br><br>
+
+<input type="button" value="확인">
+
+<div id="result1"></div>
+</div>
+</body>
+</html>

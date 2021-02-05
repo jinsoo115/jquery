@@ -1,0 +1,18 @@
+package kr.or.ddit.dao;
+
+import java.util.List;
+
+import com.ibatis.sqlmap.client.SqlMapClient;
+
+import kr.or.ddit.ibatis.config.SqlMapClientFactory;
+import kr.or.ddit.member.MemberVO;
+
+public class DaoImpl implements IDaoSample {
+
+	@Override
+	public List<MemberVO> getMemberAll() {
+		SqlMapClient smc = SqlMapClientFactory.getClient();
+		return null;
+	}
+
+}

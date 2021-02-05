@@ -1,0 +1,15 @@
+package kr.or.ddit.service;
+
+import java.util.List;
+
+import kr.or.ddit.member.MemberVO;
+
+public class ServiceImpl implements IServiceSample {
+
+	@Override
+	public List<MemberVO> getMemberAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
