@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="../css/public.css">
+
+    <style>
+    </style>
+
+    <script>
+        $(function() {
+            $("input").on("click", function() {
+                $.ajax({
+                    url: "/prod/ProdList",
+                    type: "get",
+                    success: function(res) {
+                        code = `<table class="table table-striped"><tr><td>PROD_ID</td><td>PROD_NAME</td><td>PROD_LGU</td><td>PROD_BUYER</td><td>PROD_COST</td><td>PROD_PRICE</td><td>PROD_SALE</td><td>PROD_OUTLINE</td><td>PROD_DETAIL</td></tr>`;
+                        $.each(res, function(i, v) {
+                            code += `<tr><td>${v.id}</td><td>${v.name}</td><td>${v.lgu}</td><td>${v.buyer}</td><td>${v.cost}</td><td>${v.price}</td><td>${v.sale}</td><td>${v.outline}</td><td>${v.detail}</td></tr>`;
+                        })
+                        code += `</table>`;
+                        $("#result1").html(code);
+                    },
+                    error: function(xhr) {
+                        alert("상태 : " + xhr.status);
+                    },
+                    dataType: "json"
+                })
+            })
+        })
+
+    </script>
+
+</head>
+
+<body>
+
+    <div class="box">
+
+        <br><br>
+
+        <input type="button" value="확인">
+
+        <div id="result1" class="container"></div>
+    </div>
+</body>
+
+</html>

@@ -18,7 +18,7 @@ public class LprodServiceImpl implements ILprodService {
 	private static ILprodService service;
 	
 	private LprodServiceImpl() {
-		dao = LprodDaoImpl.gewtDao();
+		dao = LprodDaoImpl.getDao();
 	}
 	
 	public static ILprodService getService() {

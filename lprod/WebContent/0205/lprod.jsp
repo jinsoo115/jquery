@@ -5,7 +5,27 @@
 	// Servlet에서 최종결과를 받아서 출력
 	List<LprodVO> list = (List<LprodVO>)request.getAttribute("listValue");
 %>
-<table>
+
+[
+<%
+	for(int i = 0; i < list.size(); i++){
+		LprodVO vo = list.get(i);
+		if(i>0) out.print(",");
+%>
+		{
+			"id" : "<%=vo.getLprod_id() %>",
+			"gu" : "<%=vo.getLprod_gu() %>",
+			"nm" : "<%=vo.getLprod_nm() %>"
+		}
+<%
+	}
+%>
+]
+
+
+
+
+<%-- <table>
 	<tr>
 	<td>LPROD_ID</td>
 	<td>LPROD_GU</td>
@@ -22,4 +42,4 @@
 		<td><%= vo.getLprod_nm() %></td>
 	</tr>
 	<%}%>
-</table>
+</table> --%>

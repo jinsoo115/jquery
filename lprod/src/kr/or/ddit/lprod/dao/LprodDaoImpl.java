@@ -24,7 +24,7 @@ public class LprodDaoImpl implements ILprodDao {
 		client = SqlMapClientFactory.getClient();
 
 	}
-	public static ILprodDao gewtDao() {
+	public static ILprodDao getDao() {
 		if(dao == null) dao = new LprodDaoImpl();
 		return dao;
 	}
