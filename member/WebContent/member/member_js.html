@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="shortcut icon" type="image/x-icon" href="../images/check.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="../js/jquery.serializejson.min.js"></script>
+  <script src="../js/memberfunc.js" type="text/javascript"></script>
+  <style>
+      .ziptr:hover{
+          background: crimson;
+      }
+  </style>
+  
+  <script type="text/javascript">
+  	$(function() {
+  		// 정규식
+  		// id체크
+  		$("#id").on("keyup", function(){
+  			idvalue = $("#id").val().trim();
+  			
+  			if(idvalue.length < 4 || idvalue.length > 12){
+  				nopro(this, "4~12글자 입력하세요")
+  			}
+  			
+  			// 형식
+  			regid = /^[a-z][a-zA-Z0-9]{3,11}$/;
+  			
+  			// 비교 test(): true또는 false를 리턴
+  			if(regid.test(idvalue)){
+  				okpro(this)
+  			}else{
+  				nopro(this, "올바른 형식이 아닙니다");
+  			}
+  		})
+  		
+  		// 이름
+  		$("#name").on("keyup", function() {
+			namevalue = $("#name").val().trim();
+			
+			if(namevalue.length < 2 || namevalue.length > 5){
+				nopro(this, "2~5사이 입력하세요");
+				return false;
+			}
+			
+			// 형식
+			regname = /^[가-힣]{2,5}$/;
+			
+			if(regname.test(namevalue)){
+				okpro(this);
+			}else{
+				nopro(this, "올바른 형식이 아닙니다.");
+			}
+		})
+		
+		$("#hp").on("keyup", function() {
+			hpvalue = $(this).val().trim();
+			reghp = /^\d{3}-\d{4}-\d{4}$/;
+			
+			if(reghp.test(hpvalue)){
+				okpro(this);
+			}else{
+				nopro(this, "올바른 형식이 아닙니다.");
+			}
+		})
+		
+		$("#mail").on("keyup", function() {
+			mailvalue = $(this).val().trim();
+			//regmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+			regmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+(\.[a-zA-Z]+){1,2}$/
+			if(regmail.test(mailvalue)){
+				okpro(this);
+			}else{
+				nopro(this, "올바른 형식이 아닙니다.");
+			}
+
+		})
+		
+		$("#pass").on("keyup", function() {
+			passvalue = $(this).val().trim();
+			
+		    // 길이 체크 8~12
+		    if(passvalue.length < 8 || passvalue.length > 12){
+		        nopro(this, "8~12사이 입력하세요");
+		        return false;
+		    }
+		    
+			regpass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^&*()]).{8,15}$/;
+			
+			if(regpass.test(passvalue)){
+				okpro(this);
+			}else{
+				nopro(this, "대소문자,특수문자,숫자를 1개 이상씩 입력하세요");
+			}
+		})
+		
+		$("#pass2").on("keyup", function() {
+			pwvalue = $(this).val().trim();
+			if(passvalue == pwvalue){
+  				okpro(this);
+  			}else{
+  				nopro(this, "일치하지 않습니다.");
+  			}
+		})
+		
+		
+		$("#bir").on("change", function() {
+			today = new Date();
+			birvalue = new Date($(this).val());
+			// 10년의 milisec값 구하기
+	        /*year10 = 10 * 365 * 1000 * 60 * 60 * 24;
+			
+			if((today.getTime() - birvalue.getTime()) > year10){
+				okpro(this);
+			}else{
+				nopro(this, "10살 이상만 가능합니다.")
+			}*/
+			
+			if(today.getFullYear() - birvalue.getFullYear() >= 10){
+				okpro(this);
+			}else{
+				nopro(this, "10살 이상만 가능합니다.")
+			}
+			
+		})
+		
+		$("#gender").on("change", function() {
+			svalue = $(this).val();
+			
+			if(svalue != "선택"){
+				okpro(this);
+			}else{
+				nopro(this, "선택하세요.");
+			}
+		})
+		
+///////////////////////////////////////////////////////////////  		
+		// id 중복 검사
+		$("#idbtn").on("click", function(){idcheck();})
+			
+		// 우편번호 검색 - window
+		$("#wzipbtn").on("click",function(){
+            // 새로운창 열기
+            window.open("zipsearch.html", "_blank", "width=500 height=400");
+        })
+        
+        // 우편번호 검색 - modal
+		$("#dongbtn").on("click",function(){dongsearch();})
+		
+		// modal결과에서 원하는 행 (주소)를 선택했을때 이벤트
+        // 동적으로 새롭게 생성된 요소 delegate방식
+		$("#result1").on("click",".ziptr",function(){zipselect(this);})
+		
+		// 제출
+		$("#ff").on("submit", function(){
+			b = true;
+			if($("#id").val().trim().length < 1){
+				nopro("#id","아이디를 입력하세요.")
+				bool = false;
+			}
+			if($("#name").val().trim() < 1){
+				nopro("#name","이름을 입력하세요.")
+				bool = false;
+			}
+			if($("#bir").val() == ""){
+				nopro("#bir","생년월일을 선택하세요.")
+				bool = false;
+			}
+			if($("#gender").val().trim() == "선택"){
+				nopro("#gender","성별을 선택하세요.")
+				bool = false;
+			}
+			if($("#pass").val().trim() < 1){
+				nopro("#pass","비밀번호를 입력하세요.")
+				bool = false;
+			}
+			if($("#pass2").val().trim() < 1){
+				nopro("#pass2","비밀번호 확인을 입력하세요.")
+				bool = false;
+			}
+			if($("#hp").val().trim() < 1){
+				nopro("#hp","휴대폰 번호를 입력하세요.")
+				bool = false;
+			}
+			if($("#mail").val().trim() < 1){
+				nopro("#mail","이메일을 입력하세요.")
+				bool = false;
+			}
+			
+			
+			if(!b){
+				return false;
+			}
+			
+			fsubmit();
+		})
+	})
+  </script>
+</head>
+<body>
+
+<div class="container">
+  <h4>회원가입</h4>
+  <form class="form-horizontal" id="ff">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="id">아이디:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="id" placeholder="Enter id" name="mem_id">
+      </div>
+      <button id="idbtn" class="btn btn-info btn-sm" type="button">중복검사</button>
+      <span class="sp"></span>
+      <span id="idspan"></span>
+      <div class="msg"></div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="name">이름:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="name" placeholder="Enter name" name="mem_name">
+      <div class="msg"></div>
+      </div>
+	    <span class="sp"></span>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="bir">생년월일:</label>
+      <div class="col-sm-3">
+        <input type="date" class="form-control" id="bir" placeholder="Enter bir" name="mem_bir">
+      <div class="msg"></div>
+      </div>
+      <span class="sp"></span>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="gender">성별:</label>
+      <div class="col-sm-3">
+        <select id="gender">
+            <option value="선택">선택</option>
+            <option value="남자">남자</option>
+            <option value="여자">여자</option>
+        </select>
+      <div class="msg"></div>
+      </div>
+      <span class="sp"></span>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pass">비밀번호:</label>
+      <div class="col-sm-3">          
+        <input type="password" class="form-control" id="pass" placeholder="Enter password" name="mem_pass">
+      <div class="msg"></div>
+      </div>
+      <span class="sp"></span>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pass2">비밀번호 확인:</label>
+      <div class="col-sm-3">          
+        <input type="password" class="form-control" id="pass2" placeholder="Enter password">
+      <div class="msg"></div>
+      </div>
+      <span class="sp"></span>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="hp">휴대폰 번호:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="hp" placeholder="Enter hp" name="mem_hp">
+        <div class="msg"></div>
+      </div>
+      <span class="sp"></span>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="mail">이메일:</label>
+      <div class="col-sm-3">
+        <input type="email" class="form-control" id="mail" placeholder="Enter email" name="mem_mail">
+      <div class="msg"></div>
+      </div>
+      <span class="sp"></span>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="zip">우편번호:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="zip" placeholder="Enter zip" name="mem_zip">
+      	<div class="msg"></div>
+      </div>
+      <button id="wzipbtn" class="btn btn-info btn-sm" type="button">번호검색(window)</button>
+      <button id="mzipbtn" class="btn btn-info btn-sm" type="button" data-toggle="modal" data-target="#myModal">번호검색(modal)</button>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="add1">주소:</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="add1" placeholder="Enter add1" name="mem_add1">
+        <div class="msg"></div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="add2">상세주소:</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="add2" placeholder="Enter add2" name="mem_add2">
+      	<div class="msg"></div>
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+          <label><input type="checkbox" name="remember"> Remember me</label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-info btn-block">제출</button>
+        <button type="reset" class="btn btn-danger btn-block">초기화</button>
+        <span id="subspan"></span>    
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+            <input type="text" id="dong">
+            <input type="button" id="dongbtn" value="확인">
+            <div id="result1"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</body>
+</html>
+    

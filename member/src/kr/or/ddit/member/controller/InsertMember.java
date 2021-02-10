@@ -1,6 +1,7 @@
 package kr.or.ddit.member.controller;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
@@ -34,6 +37,20 @@ public class InsertMember extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 클라이언트 요청시 전송된 데이터 받기
 		request.setCharacterEncoding("UTF-8");
+		
+		MemberVO vo = new MemberVO();
+		
+		try {
+			BeanUtils.populate(vo, request.getParameterMap());
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/*
 		String id = request.getParameter("mem_id");
 		String name = request.getParameter("mem_name");
 		String bir = request.getParameter("mem_bir");
@@ -55,6 +72,7 @@ public class InsertMember extends HttpServlet {
 		vo.setMem_zip(zip);
 		vo.setMem_add1(add1);
 		vo.setMem_add2(add2);
+		*/
 		
 		// 2. Service객체 얻기
 		IMemberService service = MemberServiceImpl.getInstance();

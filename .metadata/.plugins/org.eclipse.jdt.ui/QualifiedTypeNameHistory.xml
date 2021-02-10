@@ -35,4 +35,5 @@
 <fullyQualifiedTypeName name="kr.or.ddit.member.service.IMemberService"/>
 <fullyQualifiedTypeName name="kr.or.ddit.member.service.MemberServiceImpl"/>
 <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+<fullyQualifiedTypeName name="org.apache.commons.beanutils.BeanUtils"/>
 </qualifiedTypeNameHistroy>
