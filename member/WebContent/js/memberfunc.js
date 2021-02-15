@@ -29,8 +29,13 @@ function idcheck(){
 		alert("아이디를 입력하세요");
 		return false;
 	}
-
-	$.ajax({
+	
+	 $.post("/member/ID.do", {"id" : idvalue}, function(res){
+			
+			$("#idspan").html(res.sw).css("color","red");
+		}, "json")
+	
+	/*$.ajax({
 		url : "/member/ID.do",
 		type : "post",
 		data : {"id" : idvalue},
@@ -43,7 +48,7 @@ function idcheck(){
 		},
 		dataType : "json" 
 
-	})
+	})*/
 }
 
 

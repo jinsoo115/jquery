@@ -33,7 +33,14 @@
 <script>
     $(function(){
         $("input").on("click", function(){
-            $.ajax({
+        	$.getJSON("buyerNames.jsp", function(res){
+                code = "";
+                $.each(res, function(i, v){
+                    code += `<p id=${v.id}>${v.name}</p>`;
+                })
+                $("#names").html(code);
+            })
+            /* $.ajax({
                 url : "buyerNames.jsp",
                 type : 'get',
                 success : function(res){
@@ -47,7 +54,7 @@
                     alert("상태 : " + xhr.status);
                 },
                 dataType : "json"
-            })
+            }) */
         })
         
        /* $("#names").on("click", "p", function(){
@@ -83,7 +90,11 @@
         $("#names").on("click", "p", function(){
             idvalue = $(this).attr("id");
             
-            $.ajax({
+            $.post("details.jsp", {"id" : idvalue}, function(res){
+                    $("#details").html(res);
+                }, "html")
+            
+            /* $.ajax({
                  url : "details.jsp",
                 type : "post",
                 data : {"id" : idvalue},
@@ -94,7 +105,7 @@
                     alert("상태 : " + xhr.status);
                 },
                 dataType : "html"
-            })
+            }) */
         })
     })
 </script>

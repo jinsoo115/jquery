@@ -11,7 +11,11 @@ SqlMapClient smc = SqlMapClientFactory.getClient();
 
 //3. sql문 실행 -select-
 	List<ProdVO> list = smc.queryForList("prod.selectByName", lgu);
+	if(list != null && list.size() > 0){
 %>
+{
+	"sw" : "ok",
+	"datas" : 
 [
 <%
 for(int i = 0; i < list.size(); i++){
@@ -23,6 +27,15 @@ for(int i = 0; i < list.size(); i++){
 		"name" : "<%= vo.getProd_name() %>"
 	}
 <%	
-}
+	}
+
 %>
 ]
+}
+<%
+	}else{
+%>
+{ "sw" : "no"}
+<%
+	}
+%>

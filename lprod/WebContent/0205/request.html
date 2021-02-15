@@ -14,7 +14,15 @@
 <script>
 $(function(){
     $("input").on("click",function(){
-        $.ajax({
+    	$.getJSON("/lprod/LprodList", function(res){
+            code = `<table class="table table-striped"><tr><td>LPROD_ID</td><td>LPROD_GU</td><td>LPROD_NM</td></tr>`;
+            $.each(res, function(i,v){
+                code += `<tr><td>${v.id}</td><td>${v.gu}</td><td>${v.nm}</td></tr>`;
+            })
+            code += `</table>`;
+            $("#result1").html(code);
+        })
+        /* $.ajax({
             url : "/lprod/LprodList",
             type : "get",
             success : function(res){
@@ -29,7 +37,7 @@ $(function(){
                 alert("상태 : " + xhr.status);
             },
             dataType : "json"
-        })
+        }) */
     })
 })
 </script>

@@ -27,6 +27,7 @@
                         code += `<option value='${v.gu}'>${v.nm}</option>`;
                     })
                     $("#lprod").html(code);
+                    $("#lprod").trigger("change");
                 },
                 error : function(xhr){
                     alert("상태 : " + xhr.status);
@@ -50,11 +51,17 @@
                     alert("상태 : " + xhr.status); //200 json 파싱 오류!!!!!!!!!, 404, 500
                 },
                 success : function(res){
-                    code="";
-                    $.each(res, function(i,v){
-                        code += `<option value="${v.id}">${v.name}</option>`;
-                    })
-                    $("#prod").html(code);
+                	if(res.sw == "ok") {
+    	                code="";
+	                    $.each(res.datas, function(i,v){
+        	                code += `<option value="${v.id}">${v.name}</option>`;
+            	        })
+                	}else{
+						code = `<option value="0">데이터 없음</option>`;                		
+                	}
+               	    $("#prod").html(code);
+                   	$("#prod").trigger("change");
+                	
                 }
             })
             
@@ -65,6 +72,17 @@
         $("#prod").on("change",function(){
             //$("#prod option:selected")
             prod_id = $("option:selected", this).val();
+            if(prod_id == 0){
+            	// 데이터 없는 경우 img를 추가
+            	$("#detail").empty();
+            	$("<img>", {
+            		"src" : "../images/spongebob.png",
+            		"width" : "100px",
+            		"height" : "100px"
+            	}).appendTo("#detail");
+            	
+            	return false;
+            }
             $.ajax({
                 url : "prodDetail.jsp",
                 type : "post",
