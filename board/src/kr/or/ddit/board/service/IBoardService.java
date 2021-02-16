@@ -1,6 +1,7 @@
 package kr.or.ddit.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.board.vo.BoardVO;
 
@@ -9,6 +10,7 @@ public interface IBoardService {
 	public List<BoardVO> selectAll();
 	
 	// 페이지별 목록 가져오기
+	public List<BoardVO> selectByPage(Map<String, Integer> map);
 	
 	// 게시글 저장하기
 	
@@ -25,4 +27,5 @@ public interface IBoardService {
 	// 조회수 증가
 	
 	// 전체글 갯수 가져오기
+	public int listCount();
 }

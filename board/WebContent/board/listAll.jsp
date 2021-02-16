@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 [
 <%
+//List<BoardVO> list = (List<BoardVO>)request.getAttribute("listPage");
 List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 for(int i = 0; i < list.size(); i++){
 	BoardVO vo = list.get(i);

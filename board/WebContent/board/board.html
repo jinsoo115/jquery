@@ -9,6 +9,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="../js/board.js"></script>
   <style type="text/css">
+  body{
+  	margin: 10px;
+  }
   p{
   	box-sizing: border-box;	
   }
@@ -17,6 +20,7 @@
   	float: left;
   }
   .p2{
+  
   	width: 20%;
   	float: right;
   }
@@ -30,19 +34,30 @@
   .panel-heading:hover {
 	background: skyblue;
 }
+.pager{
+	width: 200px;
+	float: left;
+	margin: 5px;
+}
+
   </style>
 
 <script>
 $(function() {
-	readServer();
+	//readServer();
+	readPageServer(5);
 })
 </script>
 
 </head>
 <body>
 
-<div class="box">
+<h2>게시판</h2>
+<br>
 
+<div class="box">
 </div>
+<br><br>
+<div id="pagelist"></div>
 </body>
 </html>
