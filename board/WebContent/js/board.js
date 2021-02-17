@@ -1,6 +1,31 @@
 /**
  * 
  */
+
+deleteBoard = function() {
+	$.get(
+			"/board/DeleteBoard.do",
+			{"num" : vidx},
+			function(res) {
+				
+			},
+			"json"
+	)
+}
+
+insertBoard = function() {
+	$.post(
+		"/board/Insert.do",
+		$("#wform").serializeJSON(),
+		function(res) {
+			$("#writeModal").modal("hide");
+			$(".txt").val("");
+			readPageServer(1);
+		},
+		"json"
+	)
+}
+
 readPageServer = function(cpage) {
 	currentPage = cpage;
 	$.ajax({
@@ -25,15 +50,15 @@ readPageServer = function(cpage) {
 				code +=	'조회수 : '+ v.hit;
 				code +=	'</p>';
 				code +=	'<p class="p2">';
-				code +=	'<button type="button" name="modify" class="action">수정</button>';
-				code +=	'<button type="button" name="delete" class="action">삭제</button>';
+				code +=	'<button idx="' + v.num + '" type="button" name="modify" class="action">수정</button>';
+				code +=	'<button idx="' + v.num + '" type="button" name="delete" class="action">삭제</button>';
 				code +=	'</p>';
 				code +=	'<p class="p3">';
 				code +=	v.cont;
 				code +=	'</p>';
 				code +=	'<p class="p4">';
 				code +=	'<textarea rows="" cols="60"></textarea>';
-				code +=	'<button type="button" name="reply" class="action">등록</button>';
+				code +=	'<button idx="' + v.num + '" type="button" name="reply" class="action">등록</button>';
 				code +=	'</p>';
 				code +=	'</div>';
 				code +=	'</div>';
@@ -45,7 +70,7 @@ readPageServer = function(cpage) {
 			// 이전 버튼 출력 - 1보다 클 때만
 			$("#pagelist").empty();
 			if(res.startPage > 1 ){
-				pager = '<ul class="pager">';
+				pager = '<ul class="pul pager col-sm-4">';
 				pager += '<li><a class="prev" href="#">Previous</a></li>';
 				pager += '</ul>';
 				
@@ -53,7 +78,7 @@ readPageServer = function(cpage) {
 			}
 			
 			// 페이지 번호 출력
-			pager = '<ul class="pagination pager">';
+			pager = '<ul class="pul pagination col-sm-4">';
 			for(i=res.startPage; i <= res.endPage; i++){
 				if(currentPage == i){
 					pager += '<li class="active"><a class="paging" href="#">' + i + '</a></li>';
@@ -66,7 +91,7 @@ readPageServer = function(cpage) {
 			
 			// 다음 버튼 출력
 			if(res.endPage < res.totalPage){
-				pager = '<ul class="pager">';
+				pager = '<ul class="pager col-sm-4">';
 				pager += '<li><a class="next" href="#">next</a></li>';
 				pager += '</ul>';
 				

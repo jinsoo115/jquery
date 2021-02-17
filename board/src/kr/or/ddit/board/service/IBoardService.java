@@ -13,11 +13,12 @@ public interface IBoardService {
 	public List<BoardVO> selectByPage(Map<String, Integer> map);
 	
 	// 게시글 저장하기
+	public int insertBoard(BoardVO vo);
 	
 	// 게시글 수정하기
 	
 	// 게시글 삭제하기
-	
+	public int deleteBoard(int num);
 	// 댓글 저장
 	
 	// 댓글 수정

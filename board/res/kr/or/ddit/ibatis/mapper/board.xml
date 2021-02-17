@@ -22,4 +22,17 @@
 		select count(*) from board1
 	</select>
 	
+	<insert id="insertBoard" parameterClass="boardVO">
+		insert into board1 values(board1_num_seq.nextval, #subject#, #writer#, #mail#, #password#, #content#, 0,  #wip#, sysdate)
+		<selectKey keyProperty="num" resultClass="int">
+			select board1_num_seq.currval from dual
+		</selectKey>
+		
+	</insert>
+	
+	<delete id="deleteBoard" parameterClass="int">
+		delete from borad1 where num = #num#
+	</delete>
+	
+	
 </sqlMap>

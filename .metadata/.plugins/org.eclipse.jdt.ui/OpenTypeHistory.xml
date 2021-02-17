@@ -10,6 +10,6 @@
 <typeInfo handle="=prod/src&lt;kr.or.ddit.prod.service{IProdService.java[IProdService" modifiers="513" timestamp="1612514407039"/>
 <typeInfo handle="=member/src&lt;kr.or.ddit.member.dao{IMemberDao.java[IMemberDao" modifiers="513" timestamp="1612748092959"/>
 <typeInfo handle="=member/src&lt;kr.or.ddit.member.service{IMemberService.java[IMemberService" modifiers="513" timestamp="1612747556380"/>
-<typeInfo handle="=board/src&lt;kr.or.ddit.board.dao{IBoardDao.java[IBoardDao" modifiers="513" timestamp="1613355357279"/>
-<typeInfo handle="=board/src&lt;kr.or.ddit.board.service{IBoardService.java[IBoardService" modifiers="513" timestamp="1613355357265"/>
+<typeInfo handle="=board/src&lt;kr.or.ddit.board.dao{IBoardDao.java[IBoardDao" modifiers="513" timestamp="1613532802905"/>
+<typeInfo handle="=board/src&lt;kr.or.ddit.board.service{IBoardService.java[IBoardService" modifiers="513" timestamp="1613532791616"/>
 </typeInfoHistroy>

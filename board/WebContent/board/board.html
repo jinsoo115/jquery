@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="../js/jquery.serializejson.min.js"></script>
   <script src="../js/board.js"></script>
   <style type="text/css">
   body{
@@ -34,18 +35,70 @@
   .panel-heading:hover {
 	background: skyblue;
 }
-.pager{
-	width: 200px;
-	float: left;
-	margin: 5px;
+#pagelist{
+	text-align: center;
 }
-
+.pager{
+	/* width: 200px;
+	float: left; 
+	margin: 5px;*/
+	display: inline-block;
+  	vertical-align: top;
+}
+/* .pul{
+	margin-left: 10%;
+} */
+label{
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+}
   </style>
 
 <script>
 $(function() {
 	//readServer();
-	readPageServer(5);
+	readPageServer(1);
+	
+	// 페이지번호, 이전, 다음 버튼 클릭에 대한 이벤트
+	$("#pagelist").on("click", ".paging", function() {
+		//alert($(this).text());
+		currentPage = $(this).text();
+		readPageServer($(this).text());
+	})
+	
+	// 다음버튼 출력
+	$("#pagelist").on("click", ".next", function() {
+		currentPage = parseInt($(".paging").last().text()) + 1;
+		readPageServer(currentPage);
+	})
+	
+	// 이전버튼 출력
+	$("#pagelist").on("click", ".prev", function() {
+		currentPage = parseInt($(".paging").first().text()) - 1;
+		readPageServer(currentPage);
+	})
+	
+	// 각 버튼에 대한 이벤트
+	$(".box").on("click", ".action", function() {
+		vname = $(this).attr("name");
+		vidx = $(this).attr("idx");
+		
+		if(vname == "modify"){
+			alert(vidx + "번글을 수정합니다.");
+		}else if(vname == "delete"){
+			//alert(vidx + "번글을 삭제합니다.");
+			deleteBoard();
+		}else if(vname == "reply"){
+			alert(vidx + "번글에 댓글을 작성합니다.");
+		}
+	})
+	
+	// 글쓰기 전송 버튼
+	$("#wsend").on("click", function() {
+		insertBoard();
+		
+	})
 })
 </script>
 
@@ -54,10 +107,52 @@ $(function() {
 
 <h2>게시판</h2>
 <br>
+<button class="btn btn-success" data-toggle="modal" data-target="#writeModal" type="button">글쓰기</button>
+<br><br>
 
 <div class="box">
 </div>
 <br><br>
 <div id="pagelist"></div>
+
+
+<!-- Modal -->
+<div id="writeModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <form id="wform">
+        	<label>제목</label>
+        	<input class="txt" name="subject"><br>
+        	
+        	<label>작성자</label>
+        	<input class="txt" name="writer"><br>
+        	
+        	<label>메일</label>
+        	<input class="txt" name="mail"><br>
+        	
+        	<label>비밀번호</label>
+        	<input class="txt" type="password" name="password"><br>
+        	
+        	<label>내용</label><br>
+        	<textarea class="txt" rows="10" cols="40" name="content"></textarea>
+        	<br>
+        	<button class="btn btn-info" id="wsend" type="button">전송</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 </body>
 </html>
