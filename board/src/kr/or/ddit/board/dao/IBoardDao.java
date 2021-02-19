@@ -15,7 +15,7 @@ public interface IBoardDao {
 	// 게시글 저장하기
 	public int insertBoard(BoardVO vo) throws SQLException;
 	// 게시글 수정하기
-	
+	public int updateBoard(BoardVO vo) throws SQLException;
 	// 게시글 삭제하기
 	public int deleteBoard(int num) throws SQLException;
 	// 댓글 저장
@@ -25,7 +25,7 @@ public interface IBoardDao {
 	// 댓글 삭제
 	
 	// 조회수 증가
-	
+	public int updateHit(int num) throws SQLException;
 	// 전체글 갯수 가져오기
 	public int listCount() throws SQLException;
 }

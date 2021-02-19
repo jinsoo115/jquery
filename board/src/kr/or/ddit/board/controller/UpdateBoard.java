@@ -11,11 +11,11 @@ import kr.or.ddit.board.service.BoardServiceImpl;
 import kr.or.ddit.board.service.IBoardService;
 import kr.or.ddit.board.vo.BoardVO;
 
-@WebServlet("/Insert.do")
-public class Insert extends HttpServlet {
+@WebServlet("/UpdateBoard.do")
+public class UpdateBoard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Insert() {
+    public UpdateBoard() {
         super();
     }
 
@@ -30,19 +30,19 @@ public class Insert extends HttpServlet {
 		vo.setMail(request.getParameter("mail"));
 		vo.setPassword(request.getParameter("password"));
 		vo.setContent(request.getParameter("content"));
-		String wip = request.getRemoteAddr();
-		vo.setWip(wip);
+		vo.setNum(Integer.parseInt(request.getParameter("num")));
 		
 		// 2. service객체 얻기
 		IBoardService service = BoardServiceImpl.getInstance();
 		
 		// 3. service메소드 호출하기 - 결과값 받기
-		int num = service.insertBoard(vo);
+		int cnt = service.updateBoard(vo);
 		
 		// 4. 결과값을 request에 저장하기
-		request.setAttribute("result", num);
+		request.setAttribute("result", cnt);
 		
 		// 5. view페이지로 forward
 		request.getRequestDispatcher("board/result.jsp").forward(request, response);
 	}
+
 }

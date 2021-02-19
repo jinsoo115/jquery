@@ -89,5 +89,4 @@ public class ListAll extends HttpServlet {
 		// 5. view페이지로 forward
 		request.getRequestDispatcher("board/listPage.jsp").forward(request, response);
 	}
-
 }

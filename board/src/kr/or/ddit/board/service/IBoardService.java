@@ -16,7 +16,7 @@ public interface IBoardService {
 	public int insertBoard(BoardVO vo);
 	
 	// 게시글 수정하기
-	
+	public int updateBoard(BoardVO vo);
 	// 게시글 삭제하기
 	public int deleteBoard(int num);
 	// 댓글 저장
@@ -26,7 +26,7 @@ public interface IBoardService {
 	// 댓글 삭제
 	
 	// 조회수 증가
-	
+	public int updateHit(int num);
 	// 전체글 갯수 가져오기
 	public int listCount();
 }

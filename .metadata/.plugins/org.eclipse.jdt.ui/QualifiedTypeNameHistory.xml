@@ -43,7 +43,7 @@
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="kr.or.ddit.board.vo.BoardVO"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="kr.or.ddit.board.service.IBoardService"/>
 <fullyQualifiedTypeName name="kr.or.ddit.board.service.BoardServiceImpl"/>
-<fullyQualifiedTypeName name="java.lang.Integer"/>
 </qualifiedTypeNameHistroy>

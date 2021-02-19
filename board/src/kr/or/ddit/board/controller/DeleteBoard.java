@@ -34,8 +34,5 @@ public class DeleteBoard extends HttpServlet {
 		
 		// 5. view에 forward시켜
 		request.getRequestDispatcher("board/result.jsp").forward(request, response);
-		
 	}
-
-
 }
