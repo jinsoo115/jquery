@@ -9,9 +9,9 @@
 	
 %>
 {
-	"totalPage" : "<%= totalPage %>",
-	"startPage" : "<%= startPage %>",
-	"endPage" : "<%= endPage %>",
+	"totalPage" : <%= totalPage %>,
+	"startPage" : <%= startPage %>,
+	"endPage" : <%= endPage %>,
 	"datas" : [ 
 <%
 	for(int i = 0; i < list.size(); i++){

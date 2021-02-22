@@ -42,4 +42,5 @@
 	   		형식 : <sqlMap resource="경로명/파일명.xml"/> 
 	   	-->
 	   	<sqlMap resource="kr/or/ddit/ibatis/mapper/board.xml"/>
+	   	<sqlMap resource="kr/or/ddit/ibatis/mapper/reply.xml"/>
 </sqlMapConfig> 

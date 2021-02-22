@@ -45,17 +45,26 @@
 	display: inline-block;
   	vertical-align: top;
 }
-/* .pul{
-	margin-left: 10%;
-} */
+
 label{
 	display: inline-block;
 	width: 100px;
 	height: 30px;
 }
+.rep{
+	margin: 5px;
+	padding: 10px;
+	background: pink;
+	border: 1px solid gray;
+}
+#modifyForm{
+display: none;
+}
   </style>
 
 <script>
+// 객체 생성 - 속성과 메소드를 동적으로 추가해서 사용 할 수 있다.
+board={};
 $(function() {
 	//readServer();
 	readPageServer(1);
@@ -109,7 +118,21 @@ $(function() {
 			//alert(vidx + "번글을 삭제합니다.");
 			deleteBoard(this);
 		}else if(vname == "reply"){
-			alert(vidx + "번글에 댓글을 작성합니다.");
+			//alert(vidx + "번글에 댓글을 작성합니다.");
+			
+			// 서버로 요청하기 위해서 보낼 데이터 - bonum, cont, name
+			cont = $(this).parent(".p4").find("textarea").val();
+			name1 = String.fromCharCode(Math.floor(Math.random() * 26 + 97));
+			name2 = String.fromCharCode(Math.floor(Math.random() * 26 + 65));
+			name3 = Math.floor(Math.random() * 50 + 20)
+			//console.log(name1 + name2 + name3);
+			
+			board.bonum = vidx;
+			board.cont = cont;
+			board.name = name1 + name2 + name3;
+			
+			replySaveServer(this);
+			
 		}else if(vname == "list"){
 			//alert(vidx + "번 조회수 증가와 댓글 목록 가져오기");
 			vclass = $(this).parents(".panel").find(".in").attr("class")
@@ -121,8 +144,37 @@ $(function() {
 				// 조회수 증가
 				readHitServer(this);
 			}
+			
+			replyListServer(this);
+		}else if(vname == "r_modify"){
+			//alert(vidx + "댓글 수정");
+			$(this).prop("disabled", true);
+			if($("#modifyForm").css("display") != "none"){
+				// 현재 어딘가에 열려 있다. = 보이고 있다.
+				
+				// modifyForm의 textarea의 내용을 가져온다
+				// 원래 span class="cont" 에 다시 출력해주고
+				// modifyForm 을 body로 append()한다.
+				replyReset(); // 현재 어딘가에 열려있는 폼을 닫고
+				// 원래 내용으로 다시 돌아간다.
+			}
+			// 현재 닫혀있는 상태 - 안보이는 상태
+			// 원래 내용(수정할 내용) 가져오기
+			modifycont = $(this).parents(".rep").find(".cont").html();
+			
+			//br태그를 \n으로 변경
+			modifycont = modifycont.replace(/<br>/g, "\n");
+			// modifyForm
+			$("#modifyForm > textarea").val(modifycont);
+			$(this).parents(".rep").find(".cont").empty();
+			$(this).parents(".rep").find(".cont").append($("#modifyForm"));
+			$("#modifyForm").show(); 
+			
+		}else if(vname == "r_delete"){
+			deleteReply(this);
 		}
 	})
+	
 	
 	// 글쓰기 전송 버튼
 	$("#wsend").on("click", function() {
@@ -142,6 +194,13 @@ $(function() {
 
 </head>
 <body>
+
+<!-- 댓글 수정폼 -->
+<div id="modifyForm">
+	<textarea rows="5" cols="30"></textarea>
+	<input type="button" value="확인" id="modiok">
+	<input type="button" value="취소" id="modireset">
+</div>
 
 <h2>게시판</h2>
 <br>

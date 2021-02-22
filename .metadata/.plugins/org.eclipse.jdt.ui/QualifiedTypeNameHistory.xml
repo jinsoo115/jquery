@@ -36,13 +36,14 @@
 <fullyQualifiedTypeName name="kr.or.ddit.board.dao.IBoardDao"/>
 <fullyQualifiedTypeName name="kr.or.ddit.board.dao.BoradDaoImpl"/>
 <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.apache.log4j.DailyRollingFileAppender"/>
 <fullyQualifiedTypeName name="kr.or.ddit.board.controller.ListAll"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="kr.or.ddit.board.vo.BoardVO"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="kr.or.ddit.board.vo.ReplyVO"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="kr.or.ddit.board.service.IBoardService"/>
 <fullyQualifiedTypeName name="kr.or.ddit.board.service.BoardServiceImpl"/>
