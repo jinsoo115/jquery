@@ -64,7 +64,10 @@ display: none;
 
 <script>
 // 객체 생성 - 속성과 메소드를 동적으로 추가해서 사용 할 수 있다.
+// 댓글 저장시 사용
 board={};
+// 댓글 수정시 사용할 객체
+reply={};
 $(function() {
 	//readServer();
 	readPageServer(1);
@@ -165,7 +168,7 @@ $(function() {
 			//br태그를 \n으로 변경
 			modifycont = modifycont.replace(/<br>/g, "\n");
 			// modifyForm
-			$("#modifyForm > textarea").val(modifycont);
+			$("#modifyForm textarea").val(modifycont);
 			$(this).parents(".rep").find(".cont").empty();
 			$(this).parents(".rep").find(".cont").append($("#modifyForm"));
 			$("#modifyForm").show(); 
@@ -189,6 +192,39 @@ $(function() {
 		// parent 변수에 저장
 		// parent는 전역변수
 	})
+	
+	// 댓글수정에서 확인버튼
+	$("#modiok").on("click", function() {
+		$(this).parents(".rep").find("#rmodi").prop("disabled", false);
+		
+		modicont = $("#modifyForm textarea").val()
+		
+		modicont2 = modicont.replace(/\n/g, "<br>");
+
+		// 화면에서 수정 하기 위해서 현재 수정폼의 부모를 찾는다
+		spancont = $("#modifyForm").parent()
+		
+		// modifyForm을 다시 body로 보내기
+		$("body").append($("#modifyForm"));
+		$("#modifyForm").hide();
+	
+		// 화면에 수정한 내용을 출력
+		$(spancont).html(modicont2);
+		
+		// db에서 수정 - reply객체를 이용해서 cont, renum을 설정
+		reply.cont=modicont;
+		reply.renum=vidx;
+		updateRelpy();
+		
+	})
+	
+	// 댓글수정에서 취소버튼
+	$("#modireset").on("click", function() {
+		$(this).parents(".rep").find("#rmodi").prop("disabled", false);
+		replyReset(); // 수정폼이 body로 이동
+		
+	})
+	
 })
 </script>
 

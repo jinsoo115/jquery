@@ -18,7 +18,7 @@
 		delete from reply where renum = #renum#
 	</delete>
 	
-	<update id="updateReply" parameterClass="int">
+	<update id="updateReply" parameterClass="replyVO">
 		update reply set cont = #cont#, redate = sysdate where renum = #renum#
 	</update>
 </sqlMap>

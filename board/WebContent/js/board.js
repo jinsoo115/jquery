@@ -1,11 +1,22 @@
 /**
  * 
  */
+updateRelpy = function() {
+	$.ajax({
+		url : "/board/UpdateReply.do",
+		type : "post",
+		data : reply, // reply객체 - cont, renum이 저장
+		dataType : "json"
+		
+	})
+}
+
 replyReset = function() {
+	$("#modifyForm").parents(".rep").find("#rmodi").prop("disabled", false);
 	spancont = $("#modifyForm").parent(); // span태그
 
 	//수정폼을 다시 body로 append
-	$("body").append("#modifyForm");
+	$("body").append($("#modifyForm"));
 	$("#modifyForm").hide();
 	
 	// 원래 내용을 가져와서 수정폼에 출력하기 위해서
@@ -78,7 +89,7 @@ replyListServer = function(btn) {
 												+ v.cont + '</span>';
 										recode += '</p>';
 										recode += '<p class="p2">';
-										recode += '<button idx="'
+										recode += '<button id="rmodi" idx="'
 												+ v.renum
 												+ '" type="button" name="r_modify" class="action">댓글수정</button>';
 										recode += '<button idx="'
@@ -294,8 +305,7 @@ readPageServer = function(cpage) {
 }
 
 readServer = function() {
-	$
-			.ajax({
+	$.ajax({
 				url : "/board/List.do",
 				type : "get",
 				success : function(res) {
