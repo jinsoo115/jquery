@@ -70,6 +70,30 @@
 		code += '</div>';
 		$(".sidenav1").html(code);		
 	});
+	
+	// 왼쪽 메뉴를 클릭할때-delegate	
+	$(".sidenav1").on("click", ".list-group-item", function() {
+		//console.log($(this).attr("class"));
+		if($(this).attr("class").match("disabled")) return;
+		proc(this);
+	});
+	
+	$(".dropdown-menu li a, #myNavbar li a").on("click", function() {
+		proc(this);
+	});
+	
+	function proc(aa) {
+		vtext = $(aa).text().trim(); // 부메뉴의 문자들을 가져온다.
+		
+		$(".text-left h1").text(vtext);
+		
+		if(vtext == "자유게시판"){
+			$(".text-left #result").load("../board/board.html");
+		}else if(vtext == "회원가입"){
+			$(".text-left #result").load("../member/member.html");
+		}
+	}
+	
 });
   </script>
 </head>

@@ -26,17 +26,17 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar1">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="collapse navbar-collapse" id="myNavbar1">
       <ul class="nav navbar-nav navbar-right">
       
 				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						마이페이지 <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
